@@ -1,0 +1,31 @@
+// .example-container mat-form-field + mat-form-field {
+//   margin-left: 8px;
+// }
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-row .half-width {
+  width: 50%;
+}
+
+.input-row label {
+  margin-right: 10px;
+}
+
+.file-upload {
+  margin-left: 5px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+}

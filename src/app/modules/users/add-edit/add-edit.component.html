@@ -1,0 +1,517 @@
+<!-- <div class="p-4">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="mb-3 col">
+          <label class="form-label">First Name</label>
+          <input
+            type="text"
+            formControlName="firstName"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+          />
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">
+              First Name is required
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 col">
+          <label class="form-label">Last Name</label>
+          <input
+            type="text"
+            formControlName="lastName"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+          />
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col">
+          <label class="form-label">Username</label>
+          <input
+            type="text"
+            formControlName="username"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+        <div class="mb-3 col">
+          <label class="form-label">
+            Password
+            <em *ngIf="id">(Leave blank to keep the same password)</em>
+          </label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <button [disabled]="submitting" class="btn btn-primary">
+          <span
+            *ngIf="submitting"
+            class="spinner-border spinner-border-sm me-1"
+          ></span>
+          Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+      </div>
+    </form>
+    <div *ngIf="loading" class="text-center m-5">
+      <span class="spinner-border spinner-border-lg align-center"></span>
+    </div>
+  </div>
+</div> -->
+
+<!-- Form Layout -->
+<div class="card">
+  <div class="card-body">
+    <h2 class="mb-40">User's Form</h2>
+    <form>
+      <div class="input-row">
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>Surname</mat-label>
+          <input matInput type="text" placeholder="Enter your NSurname" />
+        </mat-form-field>
+
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" placeholder="Enter your First Name" />
+        </mat-form-field>
+      </div>
+
+      <div class="input-row">
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>Other Names</mat-label>
+          <input matInput type="text" placeholder="Enter your Other Names" />
+        </mat-form-field>
+
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Enter your email" />
+        </mat-form-field>
+      </div>
+      <!-- <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter your password">
+      </mat-form-field> -->
+      <div class="input-row">
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>Contact Number</mat-label>
+          <input matInput type="text" placeholder="Enter your password" />
+        </mat-form-field>
+
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>Error</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
+      </div>
+
+      <div class="input-row">
+        <mat-form-field class="w-100 fs-16">
+          <mat-label>Address</mat-label>
+          <textarea
+            matInput
+            rows="6"
+            placeholder="Enter your address"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="input-row">
+        <mat-form-field>
+          <input
+            matInput
+            readonly
+            [matDatepicker]="picker"
+            placeholder="Date of birth"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="handleError('dob', 'required')">
+            Date of birth is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Country</mat-label>
+          <mat-select (selectionChange)="fetchStates($event.value)">
+            <mat-option *ngFor="let country of countries" [value]="country">
+              {{ country }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="input-row">
+        <mat-form-field *ngIf="selectedCountry">
+          <mat-label>State</mat-label>
+          <mat-select (selectionChange)="fetchLGAs($event.value)">
+            <mat-option *ngFor="let state of states" [value]="state">
+              {{ state }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedCountry">
+          <mat-label>LGA</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let lga of lgas" [value]="lga">
+              {{ lga }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-radio-group
+        color="primary"
+        class="fs-16"
+        aria-label="Select an option"
+      >
+        <mat-label class="text-secondary">Gender</mat-label>
+        <mat-radio-button
+          value="1"
+          class="mt-8 mb-16 d-block"
+          [checked]="checked"
+          >Male</mat-radio-button
+        >
+        <mat-radio-button value="2" class="d-block mb-16"
+          >Female</mat-radio-button
+        >
+      </mat-radio-group>
+
+      <section class="fs-16 mb-32">
+        <mat-checkbox color="primary" [checked]="checked" class="d-block mb-16"
+          >Accept Terms & Conditions</mat-checkbox
+        >
+      </section>
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" routerLink="/users">
+          Back to List
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="ml-3"
+          (click)="onBack()"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Form Design Type -->
+<!-- <div class="card">
+  <div class="card-body">
+    <h4 class="mb-32">Form Design Type</h4>
+
+    <mat-form-field class="me-24 fs-16" appearance="outline">
+      <mat-label>Outlined</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="me-24 fs-16" appearance="fill">
+      <mat-label>Filled</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="me-24 fs-16" >
+      <mat-label>Standard</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+</div> -->
+
+<!-- Title group  -->
+<!-- <div class="title-group">
+  <h1 class="mat-h1">Add Student</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<-- Form --
+<div class="inner-wrapper">
+  <form
+    [formGroup]="studentForm"
+    (ngSubmit)="submitStudentForm()"
+    #resetStudentForm="ngForm"
+    novalidate
+  >
+    <-- Left block --
+    <mat-card>
+      <div class="controlers-wrapper">
+        <-- Name --
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Student name"
+            formControlName="student_name"
+          />
+          <mat-error *ngIf="handleError('student_name', 'required')">
+            You must provide a <strong>student name</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <-- Email --
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Student email"
+            formControlName="student_email"
+          />
+          <mat-error *ngIf="handleError('student_email', 'required')">
+            You must provide a<strong>student email</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <-- Section --
+        <mat-form-field>
+          <mat-label>Section</mat-label>
+          <mat-select formControlName="section">
+            <mat-option
+              [value]="sectioinArray"
+              *ngFor="let sectioinArray of SectioinArray"
+              >{{ sectioinArray }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('section', 'required')">
+            Section is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <-- Right block --
+    <mat-card>
+      <div class="controlers-wrapper">
+        <-- Add subjects --
+        <mat-form-field class="multiple-items">
+          <mat-chip-grid #chipGrid>
+            <mat-chip
+              *ngFor="let subjectArray of subjectArray"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(subjectArray)"
+            >
+              {{ subjectArray.name }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              matInput
+              placeholder="Add subject"
+              [matChipInputFor]="chipGrid"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-grid>
+          <i
+            class="material-icons tooltip-info"
+            matTooltip="Enter subject name and press enter to add subjects"
+          >
+            info
+          </i>
+        </mat-form-field>
+
+        <-- Date of birth --
+        <mat-form-field>
+          <input
+            matInput
+            readonly
+            [matDatepicker]="picker"
+            placeholder="Date of birth"
+            formControlName="dob"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="handleError('dob', 'required')">
+            Date of birth is required
+          </mat-error>
+        </mat-form-field>
+
+        <-- Gender --
+        <div class="misc-bottom-padding">
+          <mat-label>Gender:</mat-label>
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="gender"
+          >
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card>
+
+    <-- Submit & Reset --
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="warn">Submit</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
+
+
+
+
+<-- Title group  --
+<div class="title-group">
+    <h1 class="mat-h1">Add Student</h1>
+    <mat-divider fxFlex="1 0"></mat-divider>
+  </div>
+  
+  <-- Form --
+  <div class="inner-wrapper">
+    <form
+      [formGroup]="studentForm"
+      (ngSubmit)="updateStudentForm()"
+      #resetStudentForm="ngForm"
+      novalidate
+    >
+      <-- Left block --
+      <mat-card>
+        <div class="controlers-wrapper">
+          <-- Name --
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Student name"
+              formControlName="student_name"
+            />
+            <mat-error *ngIf="handleError('student_name', 'required')">
+              You must provide a<strong>student name</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <-- Email --
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Student email"
+              formControlName="student_email"
+            />
+            <mat-error *ngIf="handleError('student_email', 'required')">
+              You must provide a<strong>student email</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <-- Section --
+          <mat-form-field>
+            <mat-label>Section</mat-label>
+            <mat-select formControlName="section">
+              <mat-option
+                [value]="sectioinArray"
+                *ngFor="let sectioinArray of SectioinArray"
+                >{{ sectioinArray }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="handleError('section', 'required')">
+              Section is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card>
+  
+      <-- Right block --
+      <mat-card>
+        <div class="controlers-wrapper">
+          <-- Add subjects --
+          <mat-form-field class="multiple-items">
+            <mat-chip-grid #chipGrid>
+              <mat-chip
+                *ngFor="let subjectArray of subjectArray"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(subjectArray)"
+              >
+                {{ subjectArray.name }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Add subject"
+                [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-grid>
+            <i
+              class="material-icons tooltip-info"
+              matTooltip="Enter subject name and press enter to add subjects"
+            >
+              info
+            </i>
+          </mat-form-field>
+  
+          <-- Date of birth --
+          <mat-form-field>
+            <input
+              matInput
+              readonly
+              [matDatepicker]="picker"
+              placeholder="Date of birth"
+              formControlName="dob"
+              (dateChange)="formatDate($event)"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="handleError('dob', 'required')">
+              Date of birth is required
+            </mat-error>
+          </mat-form-field>
+  
+          <-- Gender --
+          <div class="misc-bottom-padding">
+            <mat-label>Gender:</mat-label>
+            <mat-radio-group
+              aria-label="Select an option"
+              formControlName="gender"
+            >
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </mat-card>
+  
+      <-- Submit & Reset --
+      <mat-card>
+        <div class="full-wrapper button-wrapper">
+          <div class="button-wrapper">
+            <button mat-flat-button color="warn">Update</button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </div> -->

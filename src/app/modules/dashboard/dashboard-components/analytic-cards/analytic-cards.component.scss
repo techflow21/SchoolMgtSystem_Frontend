@@ -1,0 +1,47 @@
+mat-grid-tile {
+  background: lightblue;
+}
+
+
+.grid-cards{
+  margin: auto;
+  justify-content:space-between;
+  flex-wrap: wrap;
+
+}
+
+.dashboard-card {
+  /* Styling for the dashboard cards */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Background colors for different cards */
+.bg-blue-500 {
+  background-color: #3498db; /* Adjust as needed */
+}
+
+.bg-green-500 {
+  background-color: #2ecc71; /* Adjust as needed */
+}
+
+.bg-purple-500 {
+  background-color: #9b59b6; /* Adjust as needed */
+}
+
+.bg-red-500 {
+  background-color: #e74c3c; /* Adjust as needed */
+}
+
+.dashboard-card {
+  /* Existing styles for the dashboard cards */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 160px; /* Limit the maximum height */
+  width: 160px; /* Limit the maximum width */
+  max-width: 350;
+
+  overflow: hidden;
+}
+
+

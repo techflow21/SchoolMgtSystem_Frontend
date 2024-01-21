@@ -1,0 +1,1028 @@
+<!-- <div class="p-4">
+  <div class="container">
+    <h1>Users</h1>
+    <a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width: 30%">First Name</th>
+          <th style="width: 30%">Last Name</th>
+          <th style="width: 30%">Username</th>
+          <th style="width: 10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.username }}</td>
+          <td style="white-space: nowrap">
+            <a
+              routerLink="edit/{{ user.id }}"
+              class="btn btn-sm btn-primary me-1"
+              >Edit</a
+            >
+            <button
+              (click)="deleteUser(user.id)"
+              class="btn btn-sm btn-danger"
+              style="width: 58px"
+              [disabled]="user.isDeleting"
+            >
+              <span
+                *ngIf="user.isDeleting"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              <span *ngIf="!user.isDeleting">Delete</span>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="!users">
+          <td colspan="4" class="text-center">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="page-sub-header">
+            <h3 class="page-title">Students</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="students.html">Student</a>
+              </li>
+              <li class="breadcrumb-item active">All Students</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="student-group-form">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by ID ..."
+            />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by Name ..."
+            />
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by Phone ..."
+            />
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="search-student-btn">
+            <button type="btn" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card card-table comman-shadow">
+          <div class="card-body">
+            <div class="page-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="page-title">Students</h3>
+                </div>
+                <div class="col-auto text-end float-end ms-auto download-grp">
+                  <a
+                    href="students.html"
+                    class="btn btn-outline-gray me-2 active"
+                    ><i class="feather-list"></i
+                  ></a>
+                  <a href="students-grid.html" class="btn btn-outline-gray me-2"
+                    ><i class="feather-grid"></i
+                  ></a>
+                  <a href="#" class="btn btn-outline-primary me-2"
+                    ><i class="fas fa-download"></i> Download</a
+                  >
+                  <a href="add-student.html" class="btn btn-primary"
+                    ><i class="fas fa-plus"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table
+                class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+              >
+                <thead class="student-thread">
+                  <tr>
+                    <th>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>DOB</th>
+                    <th>Parent Name</th>
+                    <th>Mobile Number</th>
+                    <th>Address</th>
+                    <th class="text-end">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2209</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-01.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Aaliyah</a>
+                      </h2>
+                    </td>
+                    <td>10 A</td>
+                    <td>2 Feb 2002</td>
+                    <td>Jeffrey Wong</td>
+                    <td>097 3584 5870</td>
+                    <td>911 Deer Ridge Drive,USA</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2213</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-03.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Malynne</a>
+                      </h2>
+                    </td>
+                    <td>8 A</td>
+                    <td>3 June 2010</td>
+                    <td>Fields Malynne</td>
+                    <td>242 362 3100</td>
+                    <td>Bacardi Rd P.O. Box N-4880, New Providence</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2143</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-02.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Levell Scott</a>
+                      </h2>
+                    </td>
+                    <td>10 A</td>
+                    <td>12 Apr 2002</td>
+                    <td>Jeffrey Scott</td>
+                    <td>026 7318 4366</td>
+                    <td>P.O. Box: 41, Gaborone</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2431</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-03.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Minnie</a>
+                      </h2>
+                    </td>
+                    <td>11 C</td>
+                    <td>24 Feb 2000</td>
+                    <td>J Shaffer</td>
+                    <td>952 512 4909</td>
+                    <td>4771 Oral Lake Road, Golden Valley</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE1534</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-04.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Lois A</a>
+                      </h2>
+                    </td>
+                    <td>10 A</td>
+                    <td>22 Jul 2006</td>
+                    <td>Cleary Wong</td>
+                    <td>413 289 1314</td>
+                    <td>2844 Leverton Cove Road, Palmer</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2153</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-05.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Calvin</a>
+                      </h2>
+                    </td>
+                    <td>9 B</td>
+                    <td>8 Dec 2003</td>
+                    <td>Minnie J Shaffer</td>
+                    <td>701 753 3810</td>
+                    <td>1900 Hidden Meadow Drive, Crete</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE1252</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-06.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Joe Kelley</a>
+                      </h2>
+                    </td>
+                    <td>11 C</td>
+                    <td>7 Oct 2000</td>
+                    <td>Vincent Howard</td>
+                    <td>402 221 7523</td>
+                    <td>3979 Ashwood Drive, Omaha</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE1434</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-07.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Vincent</a>
+                      </h2>
+                    </td>
+                    <td>10 A</td>
+                    <td>4 Jan 2002</td>
+                    <td>Kelley Joe</td>
+                    <td>402 221 7523</td>
+                    <td>3979 Ashwood Drive, Omaha</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2345</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-08.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Kozma  Tatari</a>
+                      </h2>
+                    </td>
+                    <td>9 A</td>
+                    <td>1 Feb 2006</td>
+                    <td>Lombardi</td>
+                    <td>04 2239 968</td>
+                    <td>Rruga E Kavajes, Condor Center, Tirana</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE2365</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-09.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">John Chambers</a>
+                      </h2>
+                    </td>
+                    <td>11 B</td>
+                    <td>13 Sept 2003</td>
+                    <td>Wong Jeffrey</td>
+                    <td>870 663 2334</td>
+                    <td>4667 Sunset Drive, Pine Bluff</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check check-tables">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="something"
+                        />
+                      </div>
+                    </td>
+                    <td>PRE1234</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a
+                          href="student-details.html"
+                          class="avatar avatar-sm me-2"
+                          ><img
+                            class="avatar-img rounded-circle"
+                            src="assets/img/profiles/avatar-10.jpg"
+                            alt="User Image"
+                        /></a>
+                        <a href="student-details.html">Nathan Humphries</a>
+                      </h2>
+                    </td>
+                    <td>10 B</td>
+                    <td>26 Apr 1994</td>
+                    <td>Stephen Marley</td>
+                    <td>077 3499 9959</td>
+                    <td>86 Lamphey Road, Thelnetham</td>
+                    <td class="text-end">
+                      <div class="actions">
+                        <a
+                          href="javascript:;"
+                          class="btn btn-sm bg-success-light me-2"
+                        >
+                          <i class="feather-eye"></i>
+                        </a>
+                        <a
+                          href="edit-student.html"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="feather-edit"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Title group  -->
+<!-- <div class="title-group mb-10">
+  <h1 class="mat-h1">Users List</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<p *ngIf="StudentData.length <= 0" class="no-data">
+  There is no student added yet!
+</p>
+
+<div class="container" *ngIf="StudentData.length > 0">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>Student ID</th>
+        <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="student_name">
+        <th mat-header-cell *matHeaderCellDef>Student Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.student_name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="student_email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.student_email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="section">
+        <th mat-header-cell *matHeaderCellDef>Section</th>
+        <td mat-cell *matCellDef="let element">{{ element.section }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button
+            mat-raised-button
+            color="primary"
+            class="push-right"
+            [routerLink]="['/edit-student/', element._id]"
+          >
+            Edit
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="deleteStudent(i, element)"
+          >
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div> -->
+
+<!-- Title group -->
+<!-- <mat-card>
+  <mat-card-header>
+    <mat-card-title>Users List</mat-card-title>
+    <mat-divider fxFlex="1 0"></mat-divider>
+  </mat-card-header>
+</mat-card>
+<mat-card> -->
+
+<!-- <mat-card>
+    <p *ngIf="StudentData.length <= 0" class="no-data">
+      There are no students added yet!
+    </p>
+
+    <div class="scrollable-container" *ngIf="StudentData.length > 0">
+      <mat-table [dataSource]="dataSource" class="mat-table-fixed">
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef>Student ID</th>
+          <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="student_name">
+          <th mat-header-cell *matHeaderCellDef>Student Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.student_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="student_email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.student_email }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="section">
+          <th mat-header-cell *matHeaderCellDef>Section</th>
+          <td mat-cell *matCellDef="let element">{{ element.section }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <button
+              mat-raised-button
+              color="primary"
+              class="push-right"
+              [routerLink]="['/edit-student/', element._id]"
+            >
+              Edit
+            </button>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="deleteStudent(i, element)"
+            >
+              Delete
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </mat-table>
+    </div>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+</mat-card> -->
+
+<!-- <div class="mat-elevation-z8">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource2" matSort>
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, 'select')"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: true}">
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    
+    <-- Position Column --
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, 'position')"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: true}"> No </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <-- Name Column --
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, 'name')"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: true}"> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <-- Weight Column --
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, 'weight')"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: true}"> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <-- Symbol Column --
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, 'symbol')"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: true}"> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, 'action')"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: true}"> Action </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-stroked-button color="primary">Action</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]"> </mat-paginator>
+
+</div> -->
+
+<div class="button-row mb-5 mt-10">
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="/users/add"
+    class="pt-15"
+  >
+    <mat-icon>add</mat-icon> Add New User
+  </button>
+</div>
+<mat-card class="w-100">
+  <mat-card-content>
+    <h2 class="mb-35">List of Users</h2>
+    <hr />
+
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource3" class="text-nowrap w-100">
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell class="fw-medium" *matCellDef="let element">
+            {{ element.id }}
+          </td>
+        </ng-container>
+
+        <!-- Assigned Column -->
+        <ng-container matColumnDef="assigned">
+          <th mat-header-cell *matHeaderCellDef>Assigned</th>
+          <td mat-cell *matCellDef="let element">
+            <p class="mb-0 fw-medium">{{ element.name }}</p>
+            <p class="mb-0 fw-normal op-5">{{ element.work }}</p>
+          </td>
+        </ng-container>
+
+        <!-- Project Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Project</th>
+          <td mat-cell *matCellDef="let element">
+            <p class="mb-0 fw-medium op-5">{{ element.project }}</p>
+          </td>
+        </ng-container>
+
+        <!-- Priority Column -->
+        <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef>Priority</th>
+          <td mat-cell *matCellDef="let element">
+            <span class="badge {{ element.badge }} rounded-pill">{{
+              element.priority
+            }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Budget Column -->
+        <ng-container matColumnDef="budget">
+          <th mat-header-cell *matHeaderCellDef>Budget</th>
+          <td mat-cell *matCellDef="let element">
+            <p class="mb-0 fw-medium">{{ element.budget }}</p>
+          </td>
+        </ng-container>
+        <!-- Budget Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <p class="mb-0 fw-medium">{{ element.action }}</p>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns3"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+
+<!-- <div fxLayout fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input
+      matInput
+      type="text"
+      (keyup)="doFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+</div> -->
+<table
+  mat-table
+  [dataSource]="dataSources"
+  matSort
+  matSortStart="desc"
+  (matSortChange)="customSort($event)"
+>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateOfBirth">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</th>
+    <td mat-cell *matCellDef="let element">{{ element.dateOfBirth | date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+    <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef>Details</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="redirectToDetails(element.id)"
+      >
+        <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef>Update</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="accent"
+        (click)="redirectToUpdate(element.id)"
+      >
+        <mat-icon class="mat-18">system_update</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="redirectToDelete(element.id)"
+      >
+        <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnss"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnss"></tr>
+</table>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+</mat-paginator>
